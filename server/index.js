@@ -35,7 +35,7 @@ db.on('error', error => console.log(error));
 db.once('open', () => {
   console.log('Conexion a BBDD establecida');
       const products =  Products.find({}); 
-      console.log(products)
+      //console.log(products)
       
 
 }); 

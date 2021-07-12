@@ -24,11 +24,11 @@ exports.obtenerProducto = async (req, res, next) => {
       next();
   }
 }
-/* //Añadir un producto
+//Añadir un producto
  exports.addProducto = function (req, res) {
   console.log("POST");
-  console.log(`este es el producto a añadir: ${req.body}`);
-  const product = new Product({
+  console.log(`este es el producto a añadir: ${[req.body]}`);
+  const product = {
     name: req.body.name,
     url: req.body.url,
     description: req.body.description,
@@ -39,16 +39,13 @@ exports.obtenerProducto = async (req, res, next) => {
         cif:req.body.maker.cif,
         adress:req.body.maker.adress
     } 
-  }); 
-}  */
+  }; 
+  const newProduct = new Product({product});
 
-  
-/* //para salvar los productos 
-  product.save(function (err, product) {
-    if (err) return res.status(500).send(err.message);
-    res.status(200).json(product);
-  }); */
-
+  newProduct.save()
+    .then(() => res.json('Producto añadido!'))
+    .catch(err => res.status(400).json('Error: ' + err)); 
+}
 
 //DELETE - Borra un producto por id
 exports.deleteProduct = function (req, res) {

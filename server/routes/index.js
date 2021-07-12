@@ -10,9 +10,9 @@ module.exports =function(){
         productsController.obtenerProductos
     )
 //Añade un producto
-    /* router.post('/products',
+    router.post('/products',
     productsController.addProducto
-    ) */
+    ) 
 
 //Obtiene el name de producto de la BBDD
     router.get('/products/:name',
