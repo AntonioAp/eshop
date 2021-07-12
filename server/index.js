@@ -1,43 +1,49 @@
-const express = require('express')
-require("dotenv").config();
-
-const router = require('./routes/pages')
-const routerApi = require('./routes/products')
-require('./utils/db') // Lanza la BBDD mongoose
-
-const app = express()
-const port = process.env.PORT || 5000
-// Motor de vistas
-app.set('view engine', 'pug');
-app.set('views','./views');
-
-// Para habilitar recepcion de JSONs
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+require('dotenv').config();
+const express = require('express');
+const bodyParser =require ('body-parser');
+const mongoose =require('mongoose');
+const routes = require('./routes/index.js');
+const cors = require('cors');
+const router = express.Router();
+const uri = process.env.ATLAS_URI;
+const path = require('path');
+const Products = require('./models/Products');
 
 
-/* function isAdmin(req, res, next) {
-  if (req.query.API_KEY == "123abcd") {
-    next();
-  } else {
-    res.status(403).send(`Sorry but you are not an admin and you do not have access to route ${req.url}`);
-  }
-} */
-// Middleware para controlar acceso
-// Descomentar para probar middelware
-//app.use(isAdmin);
 
-//API
-//http://localhost:3000/api/products
-//http://localhost:3000/api/products?id=2 
-app.use('/api',routerApi); // rutas para API
+// crear el servidor
+const app = express();
 
-// WEB: usar el Router
-app.use('/',router); // rutas para WEB
+// Habilitar Cors
+app.use(cors());
+
+app.use(router);
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
+//Conectar con Mongo
+
+mongoose.Promise = global.Promise;
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
+});
+
+const db = mongoose.connection;
+db.on('error', error => console.log(error)); 
+db.once('open', () => {
+  console.log('Conexion a BBDD establecida');
+      const products =  Products.find({}); 
+      console.log(products)
+      
+
+}); 
 
 
-const server = app.listen(port, () => {
-   console.log(` app listening at ${process.env.URL}:${port}`)
+
+
+app.use('/', routes())
+app.listen(4000, () => {
+    console.log('Servidor funcionando en el puerto 4000')
 })
-
-module.exports = server;

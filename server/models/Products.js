@@ -1,40 +1,45 @@
-const productSchema = new Schema({
-    id: {
-        type:Number,
-        required:true,
-        unique:true
-    },
-    title: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    price: {
-        type: Number,
-        required: true
-    },  
-    description: {
-        type: String,
-    required: true
-    },
-    category: {
-        type: String
-    },
-    image: {
-        type: String,
-        validate: {
-            validator: function(text) {
-                return text.indexOf('https://') === 0;
-            },
-            message: 'la URL de la imagen debe empezar por https://'
-        }
-    },
-    registerDate: {
-        type: Date,
-        required: true,
-        default: new Date()
-    }
-});
+const mongoose = require("mongoose")
+const Schema = mongoose.Schema;
 
-const Product = mongoose.model("Product", productSchema);
-module.exports = Product;
+const productsSchema = new Schema({
+
+name: {
+    type: String,
+    trim: true,
+},
+url:  {
+    type: String,
+    trim: true,
+}, 
+
+description: {
+    type: String,
+    trim: true,
+},
+price: {
+    type: String,
+    trim: true,
+},
+rating:  {type: {Number, default: 0},
+trim: true,
+},
+
+maker: {
+    name: {
+        type: String,
+        trim: true,
+    },
+    cif: {
+        type: String,
+        trim: true,
+    },
+    adress: {
+        type: String,
+        trim: true,
+    }
+   
+}
+});
+const Products = mongoose.model('products', productsSchema);
+
+module.exports = Products
