@@ -1,4 +1,4 @@
-
+import Button from '@material-ui/core/Button';
 
 
 const Product = ({ product, addItemToCart }) => {
@@ -12,10 +12,18 @@ const Product = ({ product, addItemToCart }) => {
             <div>
               <h3>{product.name}</h3>
               <p>{product.price} €</p>
-              <p>{product.description} €</p>
-            </div>
-            <div>
-              <button className="btn"
+              <p>{product.description} </p>
+              <Button className="btn"
+                onClick={() =>
+                  addItemToCart(
+                    product.name,
+                    product.price,
+                    product.id
+                  )
+                } variant="contained" color="primary">
+               Añadir al carrito
+              </Button>
+              {/* <button className="btn"
                 onClick={() =>
                   addItemToCart(
                     product.name,
@@ -23,9 +31,14 @@ const Product = ({ product, addItemToCart }) => {
                     product.id
                   )
                 }
+                
               >
                 Añadir al carrito
-              </button>
+              </button> */}
+
+            </div>
+            <div>
+
             </div>
           </div>
         </div>

@@ -1,19 +1,28 @@
 import CartItem from "./CartItem";
+import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 const Cart = ({ cart, removeItem }) => {
   return cart.length ? (
     // return (
-    <div>
+    <div className="link-container">
       {cart.map((product) => (
-        <CartItem
-          key={product}
-          product={product}
-          removeItemFromCart={removeItem}
+        <CartItem key={product} product={product} removeItemFromCart={removeItem}
         />
       ))}
+          
     </div>
+      
+    
   ) : (
-    <div>There are no items in your cart</div>
+    <div>
+      <p>No hay artículos en tu carrito</p>
+      <Link to="/">
+        <Button className="allProducts"  variant="contained" color="primary" disableElevation>
+        Volver a Inicio
+        </Button>
+      </Link>
+    </div>
   );
 };
 

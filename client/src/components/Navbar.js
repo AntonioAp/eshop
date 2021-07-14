@@ -5,7 +5,7 @@ const Navbar = ({ cart }) => {
   return (
     <div className="nav">
       <Link to="/" style={{ textDecoration: "none" }}>
-        <h1>My Shop</h1>
+        <h1>Bienvenid@ a mi tienda</h1>
       </Link>
       <div>
         <Link to="/cart">
