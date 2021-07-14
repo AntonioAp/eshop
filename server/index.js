@@ -8,11 +8,14 @@ const router = express.Router();
 const uri = process.env.ATLAS_URI;
 const path = require('path');
 const Products = require('./models/Products');
+const port = process.env.PORT || 4000;
 
 
 
 // crear el servidor
 const app = express();
+
+app.use('/', routes())
 
 // Habilitar Cors
 app.use(cors());
@@ -20,6 +23,8 @@ app.use(cors());
 app.use(router);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use("/static", express.static(__dirname + "/public"));
+
 
 //Conectar con Mongo
 
@@ -43,7 +48,7 @@ db.once('open', () => {
 
 
 
-app.use('/', routes())
+
 app.listen(4000, () => {
-    console.log('Servidor funcionando en el puerto 4000')
+    console.log(`Servidor funcionando en el puerto en http://localhost:${port}`)
 })
