@@ -62,12 +62,12 @@ export default function App() {
 
   //console.log(`**************${products}`)
 
-  const handleAddToCart = (title, price, image, id) => {
-    setCart([...cart, { title, price, image, id }]);
+  const handleAddToCart = (name, price, id) => {
+    setCart([...products, { name, price, id }]);
   };
 
   const handleRemoveItem = (id) => {
-    setCart(cart.filter((item) => item.id !== id));
+    setCart(products.filter((item) => item.id !== id));
     console.log(id);
   };
   const handleClick = () => setCart(true);
@@ -78,13 +78,13 @@ export default function App() {
       </div>
       <div className="App">
       
-        <Navbar cart={cart} />       
+        <Navbar cart={products} />       
         <Switch>
           <Route exact path="/">
             <Products products={products} addToCart={handleAddToCart} />
           </Route>         
           <Route exact path="/cart">
-            <Cart cart={cart} removeItem={handleRemoveItem} />  
+            <Cart cart={products} removeItem={handleRemoveItem} />  
           </Route>
         </Switch>
         <Button className="allProducts" onClick={handleClick} variant="contained" color="primary" disableElevation>
