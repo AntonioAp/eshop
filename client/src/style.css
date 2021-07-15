@@ -20,11 +20,13 @@
   }
   .cart {
     position: relative;
+    margin-right: 30px;
   }
   .badge {
     background-color: pink;
     min-width: 30px;
     border-radius: 70%;
+    margin-right: 20px;
     color: black;
     position: absolute;
     bottom: 20px;
@@ -121,4 +123,8 @@ p{
   margin: 100px;
   
 
+}
+
+.btn-borrar{
+  color:white;
 }

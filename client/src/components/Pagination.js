@@ -119,8 +119,8 @@ export default function Pagination() {
       <Table className={classes.table} aria-label="custom pagination table">
       <TableHead>
         <TableRow>
-          <TableCell>Name</TableCell>
-          <TableCell>Content</TableCell>
+          <TableCell>Nombre</TableCell>
+          <TableCell>Contenido</TableCell>
         </TableRow>
       </TableHead>
         <TableBody>

@@ -10,6 +10,11 @@ const Cart = ({ cart, removeItem }) => {
         <CartItem key={product} product={product} removeItemFromCart={removeItem}
         />
       ))}
+      <Link to="/">
+        <Button className="allProducts"  variant="contained" color="primary" disableElevation>
+        Volver a Inicio
+        </Button>
+      </Link> 
           
     </div>
       
@@ -17,11 +22,7 @@ const Cart = ({ cart, removeItem }) => {
   ) : (
     <div>
       <p>No hay artículos en tu carrito</p>
-      <Link to="/">
-        <Button className="allProducts"  variant="contained" color="primary" disableElevation>
-        Volver a Inicio
-        </Button>
-      </Link>
+       
     </div>
   );
 };
